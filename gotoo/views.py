@@ -1,8 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
-from django.shortcuts import render, redirect
-from gotoo.forms import ExtendedUserCreationForm
-from gotoo.models import Course
+from django.shortcuts import render, redirect, get_object_or_404
+from gotoo.forms import ExtendedUserCreationForm, AvatarForm
+from gotoo.models import Course, Profile
 
 
 def index(request):
@@ -24,9 +24,18 @@ def course_listings(request):
     return render(request, 'job-listings.html', {'courses': courses, 'unique_course_count': unique_course_count})
 
 
-def course_details(request, course_id):
-    courses = Course.objects.get(id=course_id)
-    return render(request, 'course_details.html', {'courses': courses})
+@login_required
+def add_course_to_user(request, pk):
+    course = get_object_or_404(Course, pk=pk)
+    user = request.user
+    user.courses.add(course)
+    return redirect('course_detail', pk=pk)
+
+
+def course_detail(request, pk):
+    course = get_object_or_404(Course, pk=pk)
+    return render(request, 'course_details.html', {'course': course})
+
 
 def registration(request):
     if request.method == 'POST':
@@ -49,5 +58,20 @@ def registration(request):
 @login_required
 def profile(request):
     user = request.user
-    courses = Course.objects.filter(user=user)
-    return render(request, 'profile.html', {'user': user, 'courses': courses})
+    profile, created = Profile.objects.get_or_create(user=user)
+
+    if request.method == 'POST':
+        form = AvatarForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = AvatarForm(instance=profile)
+
+    courses = user.courses.all()
+    context = {
+        'user': user,
+        'courses': courses,
+        'form': form,
+    }
+    return render(request, 'profile.html', context)

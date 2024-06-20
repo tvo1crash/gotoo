@@ -110,25 +110,35 @@
     <section class="contact-section section-padding">
         <div class="container">
             <div class="row justify-content-center">
-
                 <div class="col-lg-3 col-12">
-                    <img src="{% static 'images/default_user.png' %}" width="250" height="250"
-                         class="rounded" alt="">
+                    {% if profile.avatar %}
+                        <img src="{{ profile.avatar.url }}" width="250" height="250" class="rounded" alt="Аватар">
+                    {% else %}
+                        <img src="{% static 'images/default_user.png' %}" width="250" height="250" class="rounded"
+                             alt="Аватар">
+                    {% endif %}
+                    <!-- Форма для загрузки аватара -->
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="nav-link custom-btn btn">Загрузить аватар</button>
+                    </form>
+                    <!-- /Форма для загрузки аватара -->
                 </div>
+
 
                 <div class="col-lg-5 col-12 mb-3 mx-auto">
                     <div class="contact-info-wrap">
                         <div class="contact-info d-flex align-items-center mb-3">
                             <i class="custom-icon bi bi-person"></i>
-
                             <p class="mb-0">
                                 <span class="contact-info-small-title">Имя пользователя</span>
                                 {{ user.username }}
                             </p>
                         </div>
+
                         <div class="contact-info d-flex align-items-center mb-3">
                             <i class="custom-icon bi bi-book-half"></i>
-
                             <p class="mb-0">
                                 <span class="contact-info-small-title">Курс(ы)</span>
                                 {% if courses %}
@@ -145,25 +155,17 @@
 
                         <div class="contact-info d-flex align-items-center">
                             <i class="custom-icon bi-telephone"></i>
-
                             <p class="mb-0">
                                 <span class="contact-info-small-title">Телефон</span>
-
-                                <a href="tel: 305-240-9671" class="site-footer-link">
-                                    305-240-9671
-                                </a>
+                                <a href="tel:305-240-9671" class="site-footer-link">305-240-9671</a>
                             </p>
                         </div>
 
                         <div class="contact-info d-flex align-items-center">
                             <i class="custom-icon bi-envelope"></i>
-
                             <p class="mb-0">
                                 <span class="contact-info-small-title">Email</span>
-
-                                <a href="mailto:info@yourgmail.com" class="site-footer-link">
-                                    {{ user.email }}
-                                </a>
+                                <a href="mailto:info@yourgmail.com" class="site-footer-link">{{ user.email }}</a>
                             </p>
                         </div>
                     </div>
