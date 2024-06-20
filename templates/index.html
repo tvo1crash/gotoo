@@ -103,43 +103,43 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6 col-12">
-                    <form class="custom-form hero-form" action="#" method="get" role="form">
-                        <h3 class="text-white mb-3">Найди работу своей мечты</h3>
-
-                        <div class="row">
-                            <div class="col-lg-12 col-12">
-                                <div class="input-group">
-                                    <span class="input-group-text" id="basic-addon1"><i
-                                            class="bi-person custom-icon"></i></span>
-
-                                    <input type="text" name="job-title" id="job-title" class="form-control"
-                                           placeholder="Название курса" required>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-12 col-12">
-                                <button type="submit" class="form-control">
-                                    Найти курс
-                                </button>
-                            </div>
-
-                            <div class="col-12">
-                                <div class="d-flex flex-wrap align-items-center mt-4 mt-lg-0">
-                                    <span class="text-white mb-lg-0 mb-md-0 me-2">Популярные запросы:</span>
-
-                                    <div>
-                                        <a href="{% url 'listings' %}" class="badge">Веб дизайн</a>
-
-                                        <a href="{% url 'listings' %}" class="badge">Маркетинг</a>
-
-                                        <a href="{% url 'listings' %}" class="badge">Служба поддержки</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+{#                <div class="col-lg-6 col-12">#}
+{#                    <form class="custom-form hero-form" action="#" method="get" role="form">#}
+{#                        <h3 class="text-white mb-3">Найди работу своей мечты</h3>#}
+{##}
+{#                        <div class="row">#}
+{#                            <div class="col-lg-12 col-12">#}
+{#                                <div class="input-group">#}
+{#                                    <span class="input-group-text" id="basic-addon1"><i#}
+{#                                            class="bi-person custom-icon"></i></span>#}
+{##}
+{#                                    <input type="text" name="job-title" id="job-title" class="form-control"#}
+{#                                           placeholder="Название курса" required>#}
+{#                                </div>#}
+{#                            </div>#}
+{##}
+{#                            <div class="col-lg-12 col-12">#}
+{#                                <button type="submit" class="form-control">#}
+{#                                    Найти курс#}
+{#                                </button>#}
+{#                            </div>#}
+{##}
+{#                            <div class="col-12">#}
+{#                                <div class="d-flex flex-wrap align-items-center mt-4 mt-lg-0">#}
+{#                                    <span class="text-white mb-lg-0 mb-md-0 me-2">Популярные запросы:</span>#}
+{##}
+{#                                    <div>#}
+{#                                        <a href="{% url 'listings' %}" class="badge">Веб дизайн</a>#}
+{##}
+{#                                        <a href="{% url 'listings' %}" class="badge">Маркетинг</a>#}
+{##}
+{#                                        <a href="{% url 'listings' %}" class="badge">Служба поддержки</a>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </form>#}
+{#                </div>#}
 
             </div>
         </div>
@@ -424,7 +424,7 @@
                                         {{ course.price }}₽
                                     </p>
 
-                                    <a href="" class="custom-btn btn ms-auto">Попробовать</a>
+                                    <a href="{% url 'course_detail' course.pk %}" class="custom-btn btn ms-auto">Попробовать</a>
                                 </div>
                             </div>
                         </div>

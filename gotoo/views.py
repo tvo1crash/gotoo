@@ -75,3 +75,8 @@ def profile(request):
         'form': form,
     }
     return render(request, 'profile.html', context)
+
+# views.py
+def cause_error(request):
+    # Это намеренно вызовет ошибку
+    raise Exception("This is a test exception")

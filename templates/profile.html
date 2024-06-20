@@ -117,13 +117,13 @@
                         <img src="{% static 'images/default_user.png' %}" width="250" height="250" class="rounded"
                              alt="Аватар">
                     {% endif %}
-                    <!-- Форма для загрузки аватара -->
-                    <form method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <button type="submit" class="nav-link custom-btn btn">Загрузить аватар</button>
-                    </form>
-                    <!-- /Форма для загрузки аватара -->
+{#                    <!-- Форма для загрузки аватара -->#}
+{#                    <form method="post" enctype="multipart/form-data">#}
+{#                        {% csrf_token %}#}
+{#                        {{ form.as_p }}#}
+{#                        <button type="submit" class="nav-link custom-btn btn">Загрузить аватар</button>#}
+{#                    </form>#}
+{#                    <!-- /Форма для загрузки аватара -->#}
                 </div>
 
 
